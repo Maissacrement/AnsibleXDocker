@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install tmux
+      apt: 
+        name: "{{item}}"
+      loop:
+        - tmux
+        - r-base-core 
+        - gcc
+        - git
+
+    - name: Create App repo
+      shell: |
+        mkdir -p /app/R
+
+    - git: 
+        repo: https://github.com/Maissacrement/RFastBuild.git
+        dest: /app/R
