@@ -9,6 +9,11 @@ ssh_link:
 	@echo -e "ssh copy connection"
 	@linux/ssh_remote_host.sh ${DOCKER_MACHINE}
 
+ssh_connect:
+	@ssh root@${DOCKER_MACHINE_IP} -p 22
+
+ssh: ssh_link ssh_connect
+
 build:
 	docker build -t ${NAME} . 
 
